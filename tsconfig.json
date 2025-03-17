@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -17,12 +17,18 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@": [
-        "./"
-      ],
+      // "@": [
+      //   "./src"
+      // ],
       "@/*": [
-        "./*"
-      ]
+        "./src/*"
+      ],
+      // "#": [
+      //   "./types"
+      // ],
+      "#/*": [
+        "./types/*"
+      ],
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -33,6 +39,8 @@
     "src",
     "types",
     "postcss.config.mjs",
-    "rsbuild.config.ts"
+    "rsbuild.config.ts",
+    ".eslintrc.js",
   ]
+
 }

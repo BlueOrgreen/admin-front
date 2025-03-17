@@ -1,6 +1,11 @@
+import { message as Message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import { isEmpty } from 'ramda';
 
 import { t } from '@/locales/i18n';
+
+import { Result } from '#/api';
+import { ResultEnum } from '#/enum';
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
