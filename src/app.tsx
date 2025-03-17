@@ -1,24 +1,35 @@
 import { ConfigProvider, App as AntdApp } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
+import { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
-// import type { MessageInstance } from 'antd/es/message/interface';
-// import type { ModalStaticFunctions } from 'antd/es/modal/confirm';
-// import type { NotificationInstance } from 'antd/es/notification/interface';
+import { MotionLazy } from './components/animate/motion-lazy';
 
-// let message: MessageInstance;
-// let notification: NotificationInstance;
-// let modal: Omit<ModalStaticFunctions, 'warn'>;
+import type { MessageInstance } from 'antd/es/message/interface';
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm';
+import type { NotificationInstance } from 'antd/es/notification/interface';
+
+// eslint-disable-next-line import/no-mutable-exports
+let message: MessageInstance;
+// eslint-disable-next-line import/no-mutable-exports
+let notification: NotificationInstance;
+// eslint-disable-next-line import/no-mutable-exports
+let modal: Omit<ModalStaticFunctions, 'warn'>;
 
 dayjs.locale('zh-cn');
 
 const App: FC = () => {
+    useEffect(() => {
+        // console.log(a1);
+    }, []);
     return (
         <HelmetProvider>
             <ConfigProvider>
                 <AntdApp>
-                    <FeedbackWrapper>app</FeedbackWrapper>
+                    <MotionLazy>
+                        <FeedbackWrapper>app</FeedbackWrapper>
+                    </MotionLazy>
                 </AntdApp>
             </ConfigProvider>
         </HelmetProvider>
@@ -27,12 +38,12 @@ const App: FC = () => {
 
 export const FeedbackWrapper: FC<PropsWithChildren<any>> = ({ children }) => {
     const staticFunction = AntdApp.useApp();
-    // message = staticFunction.message;
-    // modal = staticFunction.modal;
-    // notification = staticFunction.notification;
+    message = staticFunction.message;
+    modal = staticFunction.modal;
+    notification = staticFunction.notification;
     return children;
 };
 
-// export { message, notification, modal };
+export { message, notification, modal };
 
 export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
+import { gotoVSCode, Inspector } from 'react-dev-inspector';
 import { createRoot } from 'react-dom/client';
-import { gotoVSCode, gotoVSCodeInsiders, Inspector } from 'react-dev-inspector';
 
 import App from './app';
 

@@ -8,6 +8,7 @@ const { build } = minimist(process.argv.slice(2));
 
 const env = {
     NODE_ENV: build ? 'production' : 'development',
+    REACT_APP_API: '',
     REACT_APP_API_ENV: '',
     REACT_APP_API_ENV_NUM: '',
     REACT_APP_GITLAB_USER_NAME: '',
@@ -86,6 +87,7 @@ const main = async (): Promise<void> => {
         env.REACT_APP_API_ENV_NUM = REACT_APP_API_ENV_NUM;
     }
 
+    env.REACT_APP_API = 'http://127.0.0.1:3100/api/';
     env.REACT_APP_GITLAB_USER_NAME = REACT_APP_GITLAB_USER_NAME;
     env.REACT_APP_BUILD_TAG = CI_COMMIT_REF_NAME;
     env.REACT_APP_BUILD_TIME = dayjs().format('YYYY-MM-DD HH:mm:ss');

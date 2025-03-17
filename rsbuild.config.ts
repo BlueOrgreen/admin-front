@@ -71,6 +71,7 @@ export default defineConfig({
         define: publicVars,
         alias: {
             '@': './src',
+            '#': './types',
         },
     },
     // 打包优化
