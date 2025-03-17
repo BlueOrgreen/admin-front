@@ -91,7 +91,7 @@ const main = async (): Promise<void> => {
     env.REACT_APP_BUILD_TIME = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
     console.log('-------------------------------------------------------');
-    console.log('打印环境变量:');
+    console.log(chalk.green('打印环境变量:'));
     console.table(
         Object.entries(env).map(([key, value]) => ({
             Variable: key,
