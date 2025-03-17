@@ -6,6 +6,30 @@ import minimist from 'yargs-parser';
 
 const { build } = minimist(process.argv.slice(2));
 
+
+const charAt = `
+        ${chalk.yellow('                   _ooOoo_')}
+        ${chalk.yellow('                  o8888888o')}
+        ${chalk.yellow('                  88" . "88')}
+        ${chalk.yellow('                  (| -_- |)')}
+        ${chalk.yellow('                  O\\  =  /O')}
+        ${chalk.yellow("               ____/`---'\\____")}
+        ${chalk.yellow("             .'  \\\\|     |//  `.")}
+        ${chalk.yellow('            /  \\\\|||  :  |||//  \\')}
+        ${chalk.yellow('           /  _||||| -:- |||||-  \\')}
+        ${chalk.yellow('           |   | \\\\\\  -  /// |   |')}
+        ${chalk.yellow("           | \\_|  ''\\---/''  |   |")}
+        ${chalk.yellow('           \\  .-\\__  `-`  ___/-. /')}
+        ${chalk.yellow("         ___`. .'  /--.--\\  `. . __")}
+        ${chalk.yellow('      ."" \'<  `.___\\_<|>_/___.\'  >\'"".')}
+        ${chalk.yellow('     | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |')}
+        ${chalk.yellow('     \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /')}
+        ${chalk.yellow("======`-.____`-.___\\_____/___.-`____.-'======")}
+        ${chalk.yellow("                   `=---='")}
+        ${chalk.yellow('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')}
+        ${chalk.yellow('         佛祖保佑            永无BUG')},
+   `
+
 const env = {
     NODE_ENV: build ? 'production' : 'development',
     REACT_APP_API: '',
@@ -102,6 +126,7 @@ const main = async (): Promise<void> => {
     );
     console.log('结束打印环境变量:');
     console.log('-------------------------------------------------------');
+    console.log(charAt);
 
     await execa('rsbuild', build ? ['build'] : ['dev'], { stdio: 'inherit', env });
     console.log(chalk.green('构建完成'));
