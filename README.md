@@ -3,6 +3,9 @@
 <h1> Nest Admin </h1>
 </div>
 
+## 简介
+
+Admin Front， 是一个个人风格的全栈项目，前端基于 React 18、Vite、Ant Design 和 TypeScript 构建，后端使用 NestJS 开发：[Prune Api](https://github.com/BlueOrgreen/admin-api)
 
 
 ## 特性
