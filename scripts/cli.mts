@@ -27,7 +27,7 @@ const charAt = `
         ${chalk.yellow("======`-.____`-.___\\_____/___.-`____.-'======")}
         ${chalk.yellow("                   `=---='")}
         ${chalk.yellow('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')}
-        ${chalk.yellow('         佛祖保佑            永无BUG')},
+        ${chalk.yellow('         佛祖保佑            永无BUG')}
    `
 
 const env = {

@@ -1,8 +1,6 @@
 import { ConfigProvider, App as AntdApp } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import { useEffect } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 
 import { MotionLazy } from './components/animate/motion-lazy';
 
@@ -20,19 +18,14 @@ let modal: Omit<ModalStaticFunctions, 'warn'>;
 dayjs.locale('zh-cn');
 
 const App: FC = () => {
-    useEffect(() => {
-        // console.log(a1);
-    }, []);
     return (
-        <HelmetProvider>
-            <ConfigProvider>
-                <AntdApp>
-                    <MotionLazy>
-                        <FeedbackWrapper>app</FeedbackWrapper>
-                    </MotionLazy>
-                </AntdApp>
-            </ConfigProvider>
-        </HelmetProvider>
+        <ConfigProvider>
+            <AntdApp>
+                <FeedbackWrapper>
+                    <MotionLazy>app</MotionLazy>
+                </FeedbackWrapper>
+            </AntdApp>
+        </ConfigProvider>
     );
 };
 
