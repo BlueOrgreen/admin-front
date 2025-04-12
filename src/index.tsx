@@ -4,10 +4,16 @@ import React, { Suspense } from 'react';
 import { gotoVSCode, Inspector } from 'react-dev-inspector';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
+import App from './app';
 
 import { queryClient } from '@/http/tanstack/react-query';
 
-import App from './app';
+// 引入 icons svg 雪碧图
+import './icons';
+// i18n
+import './locales/i18n';
+// tailwind css
+import './theme/index.css';
 
 createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

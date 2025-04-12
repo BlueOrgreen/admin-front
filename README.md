@@ -53,3 +53,47 @@ pnpm build
 ```
 
 构建后的文件将位于 `dist` 目录中。
+
+
+## useQuery
+
+1. `useMutation` 是 `React Query` 中处理数据修改的强大工具，通过它你可以轻松管理复杂的异步状态，实现乐观更新，并保持客户端与服务器数据的同步。
+
+(乐观更新是一种前端优化技术，它在向服务器发送修改请求时，先假设请求会成功，立即在客户端更新UI，而不是等待服务器响应。如果后续请求失败，则回滚到之前的状态。)
+
+**适用场景**
+
+- 实时性要求高的应用：如聊天、协作工具
+- 网络条件良好时：成功率高的操作
+- 用户操作频繁时：如拖拽排序、快速点击
+
+`React Query` 通过 `useMutation` 的 `onMutate`、`onError` 和 `onSettled` 回调实现乐观更新
+
+```tsx
+const mutation = useMutation({
+  mutationFn: updateTodo,
+  // 步骤1：变异前立即更新本地缓存
+  onMutate: async (newTodo) => {
+    // 取消正在进行的查询，防止覆盖我们的乐观更新
+    await queryClient.cancelQueries(['todos'])
+    
+    // 保存当前数据以便回滚
+    const previousTodos = queryClient.getQueryData(['todos'])
+    
+    // 乐观更新
+    queryClient.setQueryData(['todos'], (old) => 
+      old.map(todo => todo.id === newTodo.id ? newTodo : todo)
+    )
+    
+    return { previousTodos } // 回滚上下文
+  },
+  // 步骤2：出错时回滚
+  onError: (err, newTodo, context) => {
+    queryClient.setQueryData(['todos'], context.previousTodos)
+  },
+  // 步骤3：无论成功失败，最终重新验证数据
+  onSettled: () => {
+    queryClient.invalidateQueries(['todos'])
+  }
+})
+```

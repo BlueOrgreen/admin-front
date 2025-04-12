@@ -9,7 +9,7 @@ const HOMEPAGE = process.env.REACT_APP_HOMEPAGE as string;
 
 const LoginRoute: AppRouteObject = {
     path: '/login',
-    Component: lazy(() => import('@/pages/sys/login/Login')),
+    Component: lazy(() => import('@/pages/sys/login/login')),
 };
 
 const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {

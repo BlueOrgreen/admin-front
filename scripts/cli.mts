@@ -6,7 +6,6 @@ import minimist from 'yargs-parser';
 
 const { build } = minimist(process.argv.slice(2));
 
-
 const charAt = `
         ${chalk.yellow('                   _ooOoo_')}
         ${chalk.yellow('                  o8888888o')}
@@ -28,7 +27,7 @@ const charAt = `
         ${chalk.yellow("                   `=---='")}
         ${chalk.yellow('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')}
         ${chalk.yellow('         佛祖保佑            永无BUG')}
-   `
+   `;
 
 const env = {
     NODE_ENV: build ? 'production' : 'development',
@@ -38,7 +37,7 @@ const env = {
     REACT_APP_GITLAB_USER_NAME: '',
     REACT_APP_BUILD_TIME: '',
     REACT_APP_BUILD_TAG: '',
-    REACT_APP_HOMEPAGE: '/home'
+    REACT_APP_HOMEPAGE: '/home',
 };
 
 const getEnvFromCICD = (str: string) => process.env[str] || '';
@@ -59,15 +58,24 @@ const checkVoltaInstalled = async () => {
 const promptForEnvSelection = async (): Promise<{
     REACT_APP_API_ENV: string;
     REACT_APP_API_ENV_NUM: string;
+    REACT_APP_API?: string;
 }> => {
     const { REACT_APP_API_ENV } = await inquirer.prompt([
         {
             type: 'list',
             name: 'REACT_APP_API_ENV',
             message: '选择环境',
-            choices: ['dev', 'test', 'pet', 'stg', 'prod'],
+            choices: ['local', 'dev', 'test', 'pet', 'stg', 'prod'],
         },
     ]);
+
+    if (REACT_APP_API_ENV === 'local') {
+        return {
+            REACT_APP_API_ENV,
+            REACT_APP_API_ENV_NUM: '1',
+            REACT_APP_API: 'http://127.0.0.1:3100/api/',
+        };
+    }
 
     if (REACT_APP_API_ENV === 'dev') {
         return {
@@ -106,13 +114,14 @@ const main = async (): Promise<void> => {
 
     // 本地开发中
     if (!CI_COMMIT_REF_NAME) {
-        await checkVoltaInstalled();
-        const { REACT_APP_API_ENV, REACT_APP_API_ENV_NUM } = await promptForEnvSelection();
+        // await checkVoltaInstalled();
+        const { REACT_APP_API_ENV, REACT_APP_API_ENV_NUM, REACT_APP_API } =
+            await promptForEnvSelection();
         env.REACT_APP_API_ENV = REACT_APP_API_ENV;
         env.REACT_APP_API_ENV_NUM = REACT_APP_API_ENV_NUM;
+        env.REACT_APP_API = REACT_APP_API;
     }
 
-    env.REACT_APP_API = 'http://127.0.0.1:3100/api/';
     env.REACT_APP_GITLAB_USER_NAME = REACT_APP_GITLAB_USER_NAME;
     env.REACT_APP_BUILD_TAG = CI_COMMIT_REF_NAME;
     env.REACT_APP_HOMEPAGE = '/home';

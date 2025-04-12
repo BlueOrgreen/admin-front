@@ -7,7 +7,6 @@ import { pluginStylus } from '@rsbuild/plugin-stylus';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 const { publicVars } = loadEnv({ prefixes: ['REACT_APP_'] });
-console.log('publicVars===>', publicVars);
 
 export default defineConfig({
     plugins: [pluginReact(), pluginSvgr(), pluginStylus()],
