@@ -38,6 +38,7 @@ const env = {
     REACT_APP_GITLAB_USER_NAME: '',
     REACT_APP_BUILD_TIME: '',
     REACT_APP_BUILD_TAG: '',
+    REACT_APP_HOMEPAGE: '/home'
 };
 
 const getEnvFromCICD = (str: string) => process.env[str] || '';
@@ -114,6 +115,7 @@ const main = async (): Promise<void> => {
     env.REACT_APP_API = 'http://127.0.0.1:3100/api/';
     env.REACT_APP_GITLAB_USER_NAME = REACT_APP_GITLAB_USER_NAME;
     env.REACT_APP_BUILD_TAG = CI_COMMIT_REF_NAME;
+    env.REACT_APP_HOMEPAGE = '/home';
     env.REACT_APP_BUILD_TIME = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
     console.log('-------------------------------------------------------');

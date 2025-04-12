@@ -2,7 +2,9 @@ import { ConfigProvider, App as AntdApp } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 
-import { MotionLazy } from './components/animate/motion-lazy';
+import Router from '@/router/index';
+
+import { MotionLazy } from './components/Animate/motion-lazy';
 
 import type { MessageInstance } from 'antd/es/message/interface';
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm';
@@ -22,7 +24,9 @@ const App: FC = () => {
         <ConfigProvider>
             <AntdApp>
                 <FeedbackWrapper>
-                    <MotionLazy>app</MotionLazy>
+                    <MotionLazy>
+                        <Router />
+                    </MotionLazy>
                 </FeedbackWrapper>
             </AntdApp>
         </ConfigProvider>

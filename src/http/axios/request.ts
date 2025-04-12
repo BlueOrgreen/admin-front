@@ -1,6 +1,5 @@
-import { message as Message } from 'antd';
-import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import { isEmpty } from 'ramda';
+import { message } from 'antd';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { t } from '@/locales/i18n';
 
@@ -42,54 +41,55 @@ axiosInstance.interceptors.response.use(
         // 业务请求错误
         throw new Error(message || t('sys.api.apiRequestFailed'));
     },
-    (error: AxiosError<Result>) => {
-        const { response, message } = error || {};
-        let errMsg = '';
-        try {
-            errMsg = response?.data?.message || message;
-        } catch (error) {
-            throw new Error(error as unknown as string);
-        }
-        // 对响应错误做点什么
-        if (isEmpty(errMsg)) {
-            // checkStatus
-            // errMsg = checkStatus(response.data.status);
-            errMsg = t('sys.api.errorMessage');
-        }
-        Message.error(errMsg);
+    async (error: AxiosError<Result>) => {
+        if (error.response)
+            switch (error.response.status) {
+                case 401: {
+                    // 如果 auth/refresh 之外的 api 报 401 错误，就主动去发起刷新 token 的请求
+                    if (
+                        error.response.config.url &&
+                        !error.response.config.url.includes('auth/refresh')
+                    ) {
+                        const res = await refreshTokenApi();
+                        if (res.status === 200) {
+                            return axios(error.response.config);
+                        }
+                        message.error('登录过期，请重新登录');
+                        return Promise.reject(res);
+                    }
+                    // 如果 auth/refresh 也 401 了，就清空用户信息和 token，跳转至登录页面
+                    // const { clearUserInfoAndToken } = useUserStore.getState().actions;
+                    // clearUserInfoAndToken();
+
+                    break;
+                }
+                default:
+                    message.error(error.response?.data.message ?? error.message);
+                    break;
+            }
         return Promise.reject(error);
     },
 );
 
-class APIClient {
-    get<T = any>(config: AxiosRequestConfig): Promise<T> {
-        return this.request({ ...config, method: 'GET' });
-    }
-
-    post<T = any>(config: AxiosRequestConfig): Promise<T> {
-        return this.request({ ...config, method: 'POST' });
-    }
-
-    put<T = any>(config: AxiosRequestConfig): Promise<T> {
-        return this.request({ ...config, method: 'PUT' });
-    }
-
-    delete<T = any>(config: AxiosRequestConfig): Promise<T> {
-        return this.request({ ...config, method: 'DELETE' });
-        console.log(a);
-    }
-
-    request<T = any>(config: AxiosRequestConfig): Promise<T> {
-        return new Promise((resolve, reject) => {
-            axiosInstance
-                .request<any, AxiosResponse<Result>>(config)
-                .then((res: AxiosResponse<Result>) => {
-                    resolve(res as unknown as Promise<T>);
-                })
-                .catch((e: Error | AxiosError) => {
-                    reject(e);
-                });
-        });
-    }
-}
-export default new APIClient();
+// 刷新 token 的 API
+const refreshTokenApi = async () => {
+    // 获取 refreshToken
+    // const { refreshToken } = useUserStore.getState().userToken;
+    // // 调用 API
+    // const res = await service.get('auth/refresh', {
+    //     params: {
+    //         refreshToken,
+    //     },
+    // });
+    // if (res) {
+    //     // 更新 token 信息
+    //     useUserStore.getState().actions.setUserToken({
+    //         accessToken: res.data.accessToken,
+    //         refreshToken: res.data.refreshToken,
+    //     });
+    // }
+    return {
+        status: 200,
+        value: 'xintoken',
+    };
+};

@@ -76,7 +76,6 @@ class APIClient {
 
     delete<T = any>(config: AxiosRequestConfig): Promise<T> {
         return this.request({ ...config, method: 'DELETE' });
-        console.log(a);
     }
 
     request<T = any>(config: AxiosRequestConfig): Promise<T> {
