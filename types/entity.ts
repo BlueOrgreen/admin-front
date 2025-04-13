@@ -2,6 +2,7 @@ import { BasicStatus, PermissionType } from './enum';
 
 export interface UserToken {
     accessToken?: string;
+    token?: string;
     refreshToken?: string;
 }
 

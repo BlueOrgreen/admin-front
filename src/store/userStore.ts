@@ -63,8 +63,9 @@ export const useSignIn = () => {
         try {
             const homePage = process.env.REACT_APP_HOMEPAGE;
             const res = await signInMutation.mutateAsync(data);
-            const { user, accessToken, refreshToken } = res;
-            setUserToken({ accessToken, refreshToken });
+            const { user, token, accessToken, refreshToken } = res;
+            // debugger;
+            setUserToken({ accessToken: token, refreshToken });
             // @ts-ignore
             user.permissions = mock_permissions;
             setUserInfo(user);

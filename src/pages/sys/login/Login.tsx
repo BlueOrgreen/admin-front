@@ -13,7 +13,6 @@ import ResetForm from './components/ResetForm';
 import LocalePicker from '@/components/LocalePicker';
 
 function Login() {
-    const { t } = useTranslation();
     const { colorBgElevated } = useThemeToken();
 
     const gradientBg = Color(colorBgElevated).alpha(0.9).toString();

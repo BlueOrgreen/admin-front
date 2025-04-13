@@ -16,15 +16,17 @@ import { mock_permissions } from '@/store/mock';
 // 使用 import.meta.glob 获取所有路由组件 vite才有的API 在Rsbuild用另外方式实现
 // const pages = import.meta.glob('/src/pages/**/*.tsx');
 const pages = require.context(
-    '@/pages', // 使用别名（需先在RSBuild中配置）
-    true, // 递归查找
-    /\.tsx$/, // 匹配.tsx文件
+    '@/pages', // 目录路径（使用别名）
+    true, // 递归查找子目录
+    /\.tsx$/, // 匹配 .tsx 文件
 );
 
 // 构建绝对路径的函数
 function resolveComponent(path: string) {
-    const homeModule: any = pages(`.${path}`);
-    return homeModule;
+    const relativePath = path.startsWith('/') ? `.${path}` : `./${path}`;
+
+    const module: any = pages(relativePath);
+    return module.default; // 返回默认导出的组件
 }
 
 /**
@@ -32,6 +34,7 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
     const permissions = useUserPermission();
+    console.log('usePermissionRoutes===>', pages, permissions);
 
     return useMemo(() => {
         const flattenedPermissions = flattenTrees(permissions!);
@@ -108,7 +111,11 @@ function transformPermissionToMenuRoutes(
                 });
             }
         } else if (resourceType === PermissionType.MENU) {
-            const Element = lazy(resolveComponent(component!) as any);
+            const Element = lazy(() =>
+                Promise.resolve({
+                    default: resolveComponent(component!),
+                }),
+            );
             if (frameSrc) {
                 appRoute.element = <Element src={frameSrc} />;
             } else {

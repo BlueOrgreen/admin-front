@@ -7,6 +7,7 @@ import { AppRouteObject } from '#/router';
 import { usePermissionRoutes } from './hooks/use-permission-routes';
 import Home from '@/pages/home';
 import DashboardLayout from '@/layouts/dashboard';
+import AuthGuard from './components/AuthGuard';
 
 const HOMEPAGE = process.env.REACT_APP_HOMEPAGE as string;
 
@@ -26,14 +27,18 @@ export default function Router() {
 
     const asyncRoutes: AppRouteObject = {
         path: '/',
-        element: <DashboardLayout />,
+        element: (
+            <AuthGuard>
+                <DashboardLayout />
+            </AuthGuard>
+        ),
         children: [
             { index: true, element: <Navigate to={HOMEPAGE} replace /> },
-            // ...permissionRoutes,
-            {
-                element: <Home />,
-                path: 'home',
-            },
+            ...permissionRoutes,
+            // {
+            //     element: <Home />,
+            //     path: 'home',
+            // },
         ],
     };
 

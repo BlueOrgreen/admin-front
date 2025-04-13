@@ -17,8 +17,6 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
     const { themeStretch, themeLayout, multiTab } = useSettings();
     const { screenMap } = useResponsive();
 
-    console.log('multiTab====>', multiTab);
-
     const mainStyle: CSSProperties = {
         paddingTop: HEADER_HEIGHT + (multiTab ? MULTI_TABS_HEIGHT : 0),
         transition: 'padding 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
