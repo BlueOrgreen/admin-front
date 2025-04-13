@@ -59,6 +59,8 @@ function Nav(props: Props) {
 
     useEffect(() => {
         const menuRoutes = menuFilter(permissionRoutes);
+        console.log('menuRoutes====>test', menuRoutes);
+
         const menus = routeToMenuFn(menuRoutes);
         setMenuList(menus);
     }, [permissionRoutes, routeToMenuFn]);
@@ -105,6 +107,8 @@ function Nav(props: Props) {
         }
         setCollapsed(!collapsed);
     };
+
+    console.log('menuList===>', menuList);
 
     return (
         <div

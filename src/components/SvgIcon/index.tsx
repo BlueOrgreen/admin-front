@@ -9,8 +9,6 @@ export type SvgIconProps = {
 } & SVGProps<SVGSVGElement>;
 
 const SvgIcon: FC<SvgIconProps> = ({ iconClass, className, ...restProps }) => {
-    console.log('Svfiocn iconClass', iconClass);
-
     return (
         <svg
             aria-hidden="true"

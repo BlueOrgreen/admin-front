@@ -34,7 +34,6 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
     const permissions = useUserPermission();
-    console.log('usePermissionRoutes===>', pages, permissions);
 
     return useMemo(() => {
         const flattenedPermissions = flattenTrees(permissions!);

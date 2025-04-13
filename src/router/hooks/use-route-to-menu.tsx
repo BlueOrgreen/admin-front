@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Iconify, SvgIcon } from '@/components/Icon';
+import { Iconify } from '@/components/Icon';
 import { useSettings } from '@/store/settingStore';
 
 import { ThemeLayout } from '#/enum';
 import { AppRouteObject } from '#/router';
 import { MenuProps } from 'antd';
+import { SvgIcon } from '@/components/SvgIcon';
 
 type ItemType = MenuProps['items'];
 
@@ -44,9 +45,10 @@ export function useRouteToMenuFn() {
                                 if (icon.startsWith('ic')) {
                                     menuItem.icon = (
                                         <SvgIcon
-                                            icon={icon}
-                                            size={24}
-                                            className="ant-menu-item-icon"
+                                            iconClass={icon}
+                                            fontSize={24}
+                                            className="!text-[22px]"
+                                            // className="ant-menu-item-icon"
                                         />
                                     );
                                 } else {
