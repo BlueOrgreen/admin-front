@@ -6,6 +6,7 @@ import { ErrorRoutes } from '@/router/routes/error-routes';
 import { AppRouteObject } from '#/router';
 import { usePermissionRoutes } from './hooks/use-permission-routes';
 import Home from '@/pages/home';
+import DashboardLayout from '@/layouts/dashboard';
 
 const HOMEPAGE = process.env.REACT_APP_HOMEPAGE as string;
 
@@ -25,16 +26,14 @@ export default function Router() {
 
     const asyncRoutes: AppRouteObject = {
         path: '/',
-        // element: <DashboardLayout />,
-        element: <div>DashboardLayout</div>,
+        element: <DashboardLayout />,
         children: [
             { index: true, element: <Navigate to={HOMEPAGE} replace /> },
-            ...permissionRoutes,
-            // {
-            //     element: <Home />,
-            //     path: 'home',
-            //     meta: 'asd',
-            // },
+            // ...permissionRoutes,
+            {
+                element: <Home />,
+                path: 'home',
+            },
         ],
     };
 
