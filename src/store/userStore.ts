@@ -10,6 +10,7 @@ import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
+import { mock_permissions } from './mock';
 
 // const { REACT_APP_HOMEPAGE: HOMEPAGE } = process.env;
 
@@ -64,12 +65,14 @@ export const useSignIn = () => {
             const res = await signInMutation.mutateAsync(data);
             const { user, accessToken, refreshToken } = res;
             setUserToken({ accessToken, refreshToken });
+            // @ts-ignore
+            user.permissions = mock_permissions;
             setUserInfo(user);
             navigatge(homePage ?? '', { replace: true });
 
             notification.success({
                 message: t('sys.login.loginSuccessTitle'),
-                description: `${t('sys.login.loginSuccessDesc')}: ${data.account}`,
+                description: `${t('sys.login.loginSuccessDesc')}: ${data.credential}`,
                 duration: 3,
             });
         } catch (err: any) {

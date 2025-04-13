@@ -5,6 +5,7 @@ import { defineConfig, loadEnv } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginStylus } from '@rsbuild/plugin-stylus';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
+// import { pluginBabel } from '@rsbuild/plugin-babel';
 
 const { publicVars } = loadEnv({ prefixes: ['REACT_APP_'] });
 

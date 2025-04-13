@@ -7,10 +7,12 @@ import Character6 from '@/assets/images/characters/character_6.png';
 import MotionContainer from '@/components/Animate/motion-container';
 import { varBounce } from '@/components/Animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
+import { useTranslation } from 'react-i18next';
 
-const { REACT_APP_HOMEPAGE: HOMEPAGE } = process.env;
+// const { REACT_APP_HOMEPAGE: HOMEPAGE } = process.env;
 
 export default function Page404() {
+    const { t } = useTranslation();
     const {
         colorBgBase,
         colorTextBase,
@@ -19,24 +21,27 @@ export default function Page404() {
         colorPrimaryTextActive,
         colorPrimaryHover,
     } = useThemeToken();
+
+    const homePage = process.env.REACT_APP_HOMEPAGE || '';
+    console.log('homePage====>', homePage);
+
     return (
         <>
             <Helmet>
-                <title> 404 Page Not Found!</title>
+                <title>{t('sys.page.notFound')}</title>
             </Helmet>
 
             <div className="m-auto max-w-[400px]">
                 <MotionContainer className="flex flex-col items-center justify-center px-2">
                     <m.div variants={varBounce().in}>
                         <Typography.Title level={3} className="text-center">
-                            Sorry, Page Not Found!
+                            {t('sys.page.notFound')}
                         </Typography.Title>
                     </m.div>
 
                     <m.div variants={varBounce().in}>
                         <Typography.Paragraph type="secondary" className="text-center">
-                            Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve
-                            mistyped the URL? Be sure to check your spelling.
+                            {t('sys.page.notFoundDesc')}
                         </Typography.Paragraph>
                     </m.div>
 
@@ -113,11 +118,12 @@ export default function Page404() {
                     </m.div>
 
                     <NavLink
-                        to={HOMEPAGE}
-                        style={{ background: colorTextBase, color: colorBgBase }}
+                        to={homePage}
+                        style={{ background: colorPrimary, color: colorBgBase }}
                         className="rounded-md p-4"
                     >
-                        Go to Home
+                        {t('common.goHome')}
+                        {/* Go to Home */}
                     </NavLink>
                 </MotionContainer>
             </div>

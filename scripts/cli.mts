@@ -73,7 +73,7 @@ const promptForEnvSelection = async (): Promise<{
         return {
             REACT_APP_API_ENV,
             REACT_APP_API_ENV_NUM: '1',
-            REACT_APP_API: 'http://127.0.0.1:3100/api/',
+            REACT_APP_API: 'http://127.0.0.1:3100',
         };
     }
 

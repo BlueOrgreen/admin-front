@@ -27,7 +27,7 @@ export interface Organization {
 
 export interface Permission {
     id: string;
-    parentId: string;
+    parentId: string | null;
     name: string;
     label: string;
     resourceType: PermissionType;

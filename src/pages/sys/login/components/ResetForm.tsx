@@ -1,12 +1,12 @@
 import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { ReturnButton } from './components/ReturnButton';
+import { ReturnButton } from './ReturnButton';
 import {
     LoginStateEnum,
     LoginStateProvider,
     useLoginStateContext,
-} from './providers/login-state-provider';
+} from '../providers/login-state-provider';
 import { SvgIcon } from '@/components/SvgIcon';
 
 function ResetForm() {

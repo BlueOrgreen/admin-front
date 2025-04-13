@@ -7,7 +7,7 @@ import ProTag from '@/theme/antd/components/tag';
 
 import { useSignIn } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
-import { LoginStateEnum, useLoginStateContext } from './providers/login-state-provider';
+import { LoginStateEnum, useLoginStateContext } from '../providers/login-state-provider';
 
 function LoginForm() {
     const { t } = useTranslation();
@@ -17,10 +17,10 @@ function LoginForm() {
 
     const signIn = useSignIn();
 
-    const handleFinish = async ({ account, password }: SignInReq) => {
+    const handleFinish = async ({ credential, password }: SignInReq) => {
         setLoading(true);
         try {
-            await signIn({ account, password });
+            await signIn({ credential, password });
         } finally {
             setLoading(false);
         }
@@ -38,7 +38,7 @@ function LoginForm() {
                 size="large"
                 initialValues={{
                     remember: true,
-                    account: DEFAULT_USER.account,
+                    credential: DEFAULT_USER.account,
                     password: DEFAULT_USER.password,
                 }}
                 onFinish={handleFinish}
@@ -89,7 +89,7 @@ function LoginForm() {
                     />
                 </div>
                 <Form.Item
-                    name="account"
+                    name="credential"
                     rules={[{ required: true, message: t('sys.login.accountPlaceholder') }]}
                 >
                     <Input placeholder={t('sys.login.account')} />

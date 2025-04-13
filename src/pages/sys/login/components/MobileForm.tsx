@@ -2,8 +2,8 @@ import { Button, Col, Form, Input, Row, Statistic } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ReturnButton } from './components/ReturnButton';
-import { LoginStateEnum, useLoginStateContext } from './providers/login-state-provider';
+import { ReturnButton } from './ReturnButton';
+import { LoginStateEnum, useLoginStateContext } from '../providers/login-state-provider';
 
 const { Countdown } = Statistic;
 

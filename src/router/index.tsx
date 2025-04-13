@@ -4,6 +4,8 @@ import { createHashRouter, Navigate, RouteObject, RouterProvider } from 'react-r
 import { ErrorRoutes } from '@/router/routes/error-routes';
 
 import { AppRouteObject } from '#/router';
+import { usePermissionRoutes } from './hooks/use-permission-routes';
+import Home from '@/pages/home';
 
 const HOMEPAGE = process.env.REACT_APP_HOMEPAGE as string;
 
@@ -18,11 +20,22 @@ const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
 };
 
 export default function Router() {
+    const permissionRoutes = usePermissionRoutes();
+    console.log('Router permissionRoutes====>', permissionRoutes);
+
     const asyncRoutes: AppRouteObject = {
         path: '/',
         // element: <DashboardLayout />,
         element: <div>DashboardLayout</div>,
-        children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }],
+        children: [
+            { index: true, element: <Navigate to={HOMEPAGE} replace /> },
+            ...permissionRoutes,
+            // {
+            //     element: <Home />,
+            //     path: 'home',
+            //     meta: 'asd',
+            // },
+        ],
     };
 
     const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];

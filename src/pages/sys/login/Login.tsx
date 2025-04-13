@@ -5,11 +5,11 @@ import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 import { useThemeToken } from '@/theme/hooks';
 import Color from 'color';
 import { LoginStateProvider } from './providers/login-state-provider';
-import LoginForm from './login-form';
-import QrCodeFrom from './QrCodeForm';
-import MobileForm from './MobileForm';
-import RegisterForm from './RegisterForm';
-import ResetForm from './ResetForm';
+import LoginForm from './components/LoginForm';
+import QrCodeFrom from './components/QrCodeForm';
+import MobileForm from './components/MobileForm';
+import RegisterForm from './components/RegisterForm';
+import ResetForm from './components/ResetForm';
 import LocalePicker from '@/components/LocalePicker';
 
 function Login() {

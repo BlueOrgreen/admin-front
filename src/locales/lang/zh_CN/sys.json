@@ -72,6 +72,10 @@
             "privacyPolicy": " 隐私政策 ",
             "logout": "退出"
         },
+        "page": {
+            "notFound": "404 页面未找到!",
+            "notFoundDesc": "抱歉，我们找不到您要查找的页面。您可能输入了错误的网址？请务必检查您的拼写。"
+        },
         "tab": {
             "fullscreen": "内容全屏",
             "refresh": "刷新",

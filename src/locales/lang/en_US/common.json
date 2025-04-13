@@ -2,6 +2,7 @@
     "common": {
         "okText": "OK",
         "closeText": "Close",
+        "goHome": "Go Home",
         "cancelText": "Cancel",
         "loadingText": "Loading...",
         "saveText": "Save",

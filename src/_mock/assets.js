@@ -501,12 +501,12 @@ export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
  */
 export const DEFAULT_USER = {
     id: faker.string.uuid(),
-    account: 'yunfan',
+    account: 'admin',
     email: faker.internet.email(),
     avatar: faker.image.avatarLegacy(),
     createdAt: faker.date.anytime(),
     updatedAt: faker.date.recent(),
-    password: '123456',
+    password: 'Aa_12345678',
     role: ADMIN_ROLE,
     permissions: ADMIN_ROLE.permission,
 };

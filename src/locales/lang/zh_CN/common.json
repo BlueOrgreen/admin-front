@@ -2,6 +2,7 @@
     "common": {
         "okText": "确认",
         "closeText": "关闭",
+        "goHome": "回到主页",
         "cancelText": "取消",
         "loadingText": "加载中...",
         "saveText": "保存",

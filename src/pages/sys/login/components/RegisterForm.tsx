@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import userService from '@/api/services/userService';
 
-import { ReturnButton } from './components/ReturnButton';
-import { LoginStateEnum, useLoginStateContext } from './providers/login-state-provider';
+import { ReturnButton } from './ReturnButton';
+import { LoginStateEnum, useLoginStateContext } from '../providers/login-state-provider';
 
 function RegisterForm() {
     const { t } = useTranslation();

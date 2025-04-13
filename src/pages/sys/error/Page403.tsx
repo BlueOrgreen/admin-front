@@ -8,8 +8,6 @@ import MotionContainer from '@/components/Animate/motion-container';
 import { varBounce } from '@/components/Animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
 
-const { REACT_APP_HOMEPAGE: HOMEPAGE } = REACT_APP_HOMEPAGE;
-
 export default function Page403() {
     const {
         colorBgBase,
@@ -19,6 +17,7 @@ export default function Page403() {
         colorPrimaryTextActive,
         colorPrimaryHover,
     } = useThemeToken();
+    const homePage = process.env.REACT_APP_HOMEPAGE || '';
     return (
         <>
             <Helmet>
@@ -122,7 +121,7 @@ export default function Page403() {
                     </m.div>
 
                     <NavLink
-                        to={HOMEPAGE}
+                        to={homePage}
                         style={{ background: colorTextBase, color: colorBgBase }}
                         className="rounded-md p-4"
                     >
