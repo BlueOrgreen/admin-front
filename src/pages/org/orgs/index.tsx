@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Home() {
-    return <div>Home</div>;
+function Orgs() {
+    return <div>Orgs</div>;
 }
 
-export default Home;
+export default Orgs;
