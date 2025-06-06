@@ -13,14 +13,14 @@ type Config = {
 };
 
 const parseEnv = (
-    processEnv: Env | undefined,
-    processEnvNum: string | undefined,
-    processReactAppApi?: Env | undefined,
 ): {
     env: Env;
     envNum: number | undefined;
-    reactAppApi?: Env | undefined;
+    reactAppApi?: string | undefined;
 } => {
+    const processEnv = process.env.REACT_APP_API_ENV as Env;
+    const processEnvNum = process.env.REACT_APP_API_ENV_NUM;
+    const processReactAppApi = process.env.REACT_APP_API
     // 如果有环境变量 processEnv，则说明是本地启动
     if (processEnv) {
         return {
@@ -56,16 +56,13 @@ const parseEnv = (
 
     throw new Error('环境变量错误');
 };
+
 const generateUrlConfig = () => {
     const {
         env,
         envNum,
         reactAppApi = 'dev',
-    } = parseEnv(
-        process.env.REACT_APP_API_ENV as Env,
-        process.env.REACT_APP_API_ENV_NUM,
-        process.env.REACT_APP_API as any,
-    );
+    } = parseEnv();
 
     if (env === 'local') {
         return {

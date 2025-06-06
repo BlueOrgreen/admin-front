@@ -7,7 +7,9 @@ import { pluginStylus } from '@rsbuild/plugin-stylus';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
 // import { pluginBabel } from '@rsbuild/plugin-babel';
 
-const { publicVars } = loadEnv({ prefixes: ['REACT_APP_'] });
+// const { publicVars } = loadEnv({ prefixes: ['REACT_APP_'] });
+// console.log("rubuild publicVars====>", publicVars);
+
 
 export default defineConfig({
     plugins: [pluginReact(), pluginSvgr(), pluginStylus()],
@@ -68,7 +70,15 @@ export default defineConfig({
         },
     },
     source: {
-        define: publicVars,
+        define: {
+            'process.env.REACT_APP_API_ENV': JSON.stringify(process.env.REACT_APP_API_ENV),
+            'process.env.REACT_APP_API_ENV_NUM': JSON.stringify(process.env.REACT_APP_API_ENV_NUM),
+            'process.env.REACT_APP_API': JSON.stringify(process.env.REACT_APP_API),
+            'process.env.REACT_APP_HOMEPAGE': JSON.stringify(process.env.REACT_APP_HOMEPAGE),
+            'process.env.REACT_APP_GITLAB_USER_NAME': JSON.stringify(process.env.REACT_APP_GITLAB_USER_NAME),
+            'process.env.REACT_APP_BUILD_TIME': JSON.stringify(process.env.REACT_APP_BUILD_TIME),
+            'process.env.REACT_APP_BUILD_TAG': JSON.stringify(process.env.REACT_APP_BUILD_TAG)
+        },
         alias: {
             '@': './src',
             '#': './types',
