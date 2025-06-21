@@ -7,14 +7,14 @@ import { Result } from '#/api';
 import { ResultEnum } from '#/enum';
 
 // 创建 axios 实例
-const axiosInstance = axios.create({
+export const service = axios.create({
     baseURL: process.env.REACT_APP_API as string,
     timeout: 50000,
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
 });
 
 // 请求拦截
-axiosInstance.interceptors.request.use(
+service.interceptors.request.use(
     (config) => {
         // 在请求被发送之前做些什么
         config.headers.Authorization = 'Bearer Token';
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
 );
 
 // 响应拦截
-axiosInstance.interceptors.response.use(
+service.interceptors.response.use(
     (res: AxiosResponse<Result>) => {
         if (!res.data) throw new Error(t('sys.api.apiRequestFailed'));
 

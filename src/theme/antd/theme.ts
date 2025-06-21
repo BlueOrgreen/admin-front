@@ -16,6 +16,7 @@ const customThemeTokenConfig: ThemeConfig['token'] = {
     borderRadiusSM: 2,
     borderRadius: 4,
     borderRadiusLG: 8,
+
 };
 
 const customComponentConfig: ThemeConfig['components'] = {
@@ -42,6 +43,7 @@ const colorPrimarys: {
     red: '#FF3030',
 };
 
+
 const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
     dark: {
         token: {
@@ -58,7 +60,9 @@ const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
             Notification: {},
         },
     },
-    light: {},
+    light: {
+   
+    },
 };
 
 export { customThemeTokenConfig, customComponentConfig, colorPrimarys, themeModeToken };

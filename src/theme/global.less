@@ -1,0 +1,79 @@
+/* editor */
+/* @import 'react-quill/dist/quill.snow.css'; */
+
+/* simplebar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* 将 Tailwind CSS 的基础样式（也称为 "base" 样式）导入到当前文件中，包括一些基本的 HTML 元素样式、重置元素默认样式等。 */
+@import 'tailwindcss/base';
+
+/* 导入 Tailwind CSS 的组件样式，包括预定义的按钮、表格、表单、卡片等组件样式。 */
+@import 'tailwindcss/components';
+
+/* 导入 Tailwind CSS 的实用类，这些类通常用于添加与布局、间距、响应式设计等相关的样式，使得可以快速构建出复杂的页面 */
+@import 'tailwindcss/utilities';
+
+
+* {
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 8px;
+    background: transparent;
+    border-radius: 2em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    background-clip: padding-box;
+    min-height: 28px;
+    border-radius: 2em;
+    border: 2px solid transparent;
+  }
+
+  &:hover {
+    -ms-overflow-style: unset;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #d8d8d8;
+    }
+  }
+}
+
+
+
+/* Table */
+.ant-table-tbody .ant-table-row .ant-table-cell {
+      font-size: 13px;
+      font-weight: normal;
+      color: #555555;
+      height: 40px;
+      padding: 10px 16px;
+}
+.ant-table-tbody .ant-table-row .ant-table-cell .ant-typography {
+      font-size: 13px;
+      font-weight: normal;
+      color: #555555;
+    
+}
+
+.ant-table-thead .ant-table-cell {
+   padding-top: 9px;
+  padding-bottom: 9px;
+  color: #555 !important;
+}
+
+.table-custom-pagination.ant-pagination {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  z-index: 999;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+}

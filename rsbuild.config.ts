@@ -5,6 +5,8 @@ import { defineConfig, loadEnv } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginStylus } from '@rsbuild/plugin-stylus';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
+import { pluginLess } from '@rsbuild/plugin-less';
+
 // import { pluginBabel } from '@rsbuild/plugin-babel';
 
 // const { publicVars } = loadEnv({ prefixes: ['REACT_APP_'] });
@@ -12,7 +14,7 @@ import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 
 export default defineConfig({
-    plugins: [pluginReact(), pluginSvgr(), pluginStylus()],
+    plugins: [pluginReact(), pluginSvgr(), pluginStylus(), pluginLess()],
     server: {
         port: 8900,
         proxy: {
